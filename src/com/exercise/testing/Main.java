@@ -9,32 +9,32 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int n = scanner.nextInt();
-        ArrayList<Integer> alist = new ArrayList<>();
+        ArrayList<Integer> numbers = new ArrayList<>();
 
-        alist.ensureCapacity(n);
+        numbers.ensureCapacity(n);
         for (int i = 1; i <= n; i++) {
-            alist.add(scanner.nextInt());
+            numbers.add(scanner.nextInt());
         }
 
         int count = 0;
-        int amax = aMaxSearch(alist);
-        ArrayList<Integer> list = new ArrayList<>(alist);
+        int maxNumber = maxNumberSearch(numbers);
+        ArrayList<Integer> list = new ArrayList<>(numbers);
         Collections.sort(list);
-        if (!alist.equals(list)) {
+        if (!numbers.equals(list)) {
             System.out.println("-1");
         } else {
-            int border = borderSearch(alist, amax);
-            if ((amax - alist.get(0)) % 2 == 0) {
-                while (alist.get(border) != amax) {
+            int border = borderSearch(numbers, maxNumber);
+            if ((maxNumber - numbers.get(0)) % 2 == 0) {
+                while (numbers.get(border) != maxNumber) {
                     for (int i = 0; i <= border; i++) {
-                        alist.set(i, alist.get(i) + (amax / 2));
+                        numbers.set(i, numbers.get(i) + (maxNumber / 2));
                         count++;
                     }
                 }
             } else {
-                while (alist.get(border) != amax) {
+                while (numbers.get(border) != maxNumber) {
                     for (int i = 0; i <= border; i++) {
-                        alist.set(i, alist.get(i) + 1);
+                        numbers.set(i, numbers.get(i) + 1);
                         count++;
                     }
                 }
@@ -43,7 +43,7 @@ public class Main {
         }
     }
 
-    public static int aMaxSearch(ArrayList<Integer> list) {
+    public static int maxNumberSearch(ArrayList<Integer> list) {
         int max = list.get(0);
         for (Integer integer : list) {
             if (integer > max) {
